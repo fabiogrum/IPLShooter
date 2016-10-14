@@ -3,9 +3,15 @@ using System.Collections;
 
 public class HealthManager : MonoBehaviour {
 
-	public int health;
+	public int health; 
+	private int currentHealth;
 
 	public EventsManager eventsManager;
+
+	void OnEnable(){
+		currentHealth = health;
+	}
+
 
 	void Awake() {
 		if (!eventsManager) {
@@ -14,8 +20,8 @@ public class HealthManager : MonoBehaviour {
 	}
 
 	public void TakeDamage(int damage) {
-		health -= damage;
-		if (health <= 0) {
+		currentHealth -= damage;
+		if (currentHealth <= 0) {
 			Die();
 		}
 	}
